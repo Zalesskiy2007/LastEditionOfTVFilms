@@ -16,7 +16,7 @@
         <h6 class="card-subtitle mb-2 text-muted">{{el.short_desc}}</h6>
         <p class="card-text">Actors: {{el.actors}}</p>
         <p class="card-text">Price: {{el.price}} RUB</p>
-        <a href="/{{el.id}}" class="btn btn-primary">More</a>
+        <a href="{{url_for(film, id=el.id)}}" class="btn btn-primary">More</a>
     </div>
 </div>
                 </div>

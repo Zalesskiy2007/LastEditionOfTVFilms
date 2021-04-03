@@ -59,7 +59,7 @@
 <div class = "other">
     <a href = "/review/{{mov.id}}" class="btn btn-primary tt">Review</a>
     <a href = "{{mov.video}}" target="_blank" class="btn btn-primary tt">Watch</a>
-    <a href="/home" class="btn btn-primary tt">Home</a>
+    <a href="{{url_for("film", id=el.id)}}" class="btn btn-primary tt">Home</a>
 </div>
 <div class = "rblock">
     <h1 align = "center">Reviews</h1>

@@ -51,7 +51,7 @@ def login():
             login_user(user)
         else:
             abort(400)
-        return redirect("/home")
+        return redirect(url_for("home"))
     return render_template("login.html")
 
 @app.route("/register", methods = ["POST", "GET"])
@@ -73,12 +73,12 @@ def register():
         db.session.add(user)
         db.session.commit()
         login_user(user, remember=False)
-        return redirect("/home")
+        return redirect(url_for("home"))
     return render_template("register.html")
 @app.route("/logout")
 def logout():
     logout_user()
-    return redirect("/")
+    return redirect(url_for("login"))
 @app.route("/home")
 def main():
     films = Film.query.all()
@@ -101,7 +101,7 @@ def review(id):
         )
         db.session.add(added)
         db.session.commit()
-        return redirect(f"/{id}")
+        return redirect(url_for("film", id=id))
     else:
         return render_template("review.html")
 
@@ -138,7 +138,7 @@ def add():
         )
         db.session.add(film)
         db.session.commit()
-        return redirect("/home")
+        return redirect(url_for("home"))
     else:
         return render_template("addfilm.html")
 @app.route("/search", methods=["POST", "GET"])
