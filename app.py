@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, abort
+from flask import Flask, render_template, request, redirect, abort, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import login_user, LoginManager, logout_user, UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -51,7 +51,7 @@ def login():
             login_user(user)
         else:
             abort(400)
-        return redirect(url_for("home"))
+        return redirect(url_for("main"))
     return render_template("login.html")
 
 @app.route("/register", methods = ["POST", "GET"])
@@ -73,7 +73,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         login_user(user, remember=False)
-        return redirect(url_for("home"))
+        return redirect(url_for("main"))
     return render_template("register.html")
 @app.route("/logout")
 def logout():
@@ -138,7 +138,7 @@ def add():
         )
         db.session.add(film)
         db.session.commit()
-        return redirect(url_for("home"))
+        return redirect(url_for("main"))
     else:
         return render_template("addfilm.html")
 @app.route("/search", methods=["POST", "GET"])
